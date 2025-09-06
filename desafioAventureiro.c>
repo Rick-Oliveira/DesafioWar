@@ -1,0 +1,124 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+//-- Constantes GLOBAIS
+
+#define MAX_STRINGS 50
+#define MAX_TERRITORIOS 50
+
+//-- Criando STRUCT
+struct territorio{
+    char nome[30];
+    char cor[10];
+    int tropas;
+};
+
+// --- Função para limpar o buffer de entrada ---
+void limparBufferEntrada() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
+// --- Função para atacar o territorio inimigo ---
+void atacar() {
+    int atacante;
+    int defensor;
+
+
+}
+
+
+
+
+//-- Funcao Principal Main
+int main(){
+    //1.ALOCAÇÃO DINÂMICA DE MEMÓRIA
+    struct territorio *biblioteca;
+    int totalTerritorio = 0;
+    
+
+    //Usamos calloc para o array de territorios.
+    //Vantagem: inicializa toda a memória com zeros.
+
+    biblioteca = (struct territorio *) calloc(MAX_TERRITORIOS, sizeof(struct territorio));
+
+    //VERIFICAÇÃO: É crucial verificar se a alocação de memória deu certo.
+
+    if (biblioteca == NULL) {
+        printf("Erro: Falha ao alocar memoria.\n");
+    }
+
+    
+
+    // -- Laço inicial do menu
+    do{
+         // Exibe o menu de cadastro
+        printf("\n======================================\n");
+        printf("  WAR ESTRUTURADO - CADASTRO INICIAL  ");
+        printf("\n======================================\n");
+        printf("Vamos cadastrar os 5 territorios iniciais do nosso mundo.\n\n");
+
+        for ( totalTerritorio = 0; totalTerritorio <= 4; totalTerritorio++ ){
+
+            printf("--- Cadastrando territorio %d ---\n", totalTerritorio + 1);
+            printf("Nome do territorio: ");
+            fgets(biblioteca[totalTerritorio].nome, MAX_STRINGS, stdin);
+
+            printf("Cor do exercito (ex: Azul, Verde): ");
+            fgets(biblioteca[totalTerritorio].cor, MAX_STRINGS, stdin);
+
+            biblioteca[totalTerritorio].nome[strcspn(biblioteca[totalTerritorio].nome, "\n")];
+            biblioteca[totalTerritorio].cor[strcspn(biblioteca[totalTerritorio].cor, "\n")];
+
+            printf("Numero de tropas: ");
+            scanf("%d", &biblioteca[totalTerritorio].tropas);
+            printf("\n");
+            limparBufferEntrada(); // Limpa  o 'n' deixado pelo scanf.
+
+
+        }; 
+    
+        //LISTAGEM DE TERRITORIOS:
+
+         printf("\n========================================\n");
+         printf("     MAPA DO MUNDO - ESTADO ATUAL");
+         printf("\n========================================\n");
+
+         for (totalTerritorio = 0; totalTerritorio <= 4; totalTerritorio++) {
+            printf("\n");
+            printf("TERRITORIO %d:", totalTerritorio + 1);
+            printf("- Nome: %s", biblioteca[totalTerritorio].nome);
+            printf("- Dominado por: Exercito %s", biblioteca[totalTerritorio].cor);
+            printf("- Tropas: %d", biblioteca[totalTerritorio].tropas);
+            //printf("\n");
+         }; 
+
+        printf("\n");
+    
+    } while (totalTerritorio<=4); // Condição pra o programa seja executado!
+
+    do {
+        //Exibe o menu da fase de ataque
+        int opcoes;
+        int atacante;
+        int defensor;
+
+        printf("\n--- Fase de ataque");
+        printf("Escolha o território atacante (1 a 5, ou 0 para sair):");
+            if(opcoes == 0){
+                //Encerra a partir neste momento!
+            } else {
+                scanf("%d", atacante);
+            }
+        prinf("Escolha o território defensor (1 a 5):");
+        scanf("%d", defensor);
+        
+
+
+
+    } while (0);// Condição pra que o programa seja executado!
+
+    return 0; // Fim do programa
+}
